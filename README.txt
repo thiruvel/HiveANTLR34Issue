@@ -7,10 +7,6 @@ mvn clean test -Dantlr.version=3.2
 ANTLR Parser Generator  Version 3.2 Sep 23, 2009 14:05:07
 com/yahoo/antlr/Insert.g
 [INFO] 
-...
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
 ..
 [INFO] --- exec-maven-plugin:1.2.1:java (default) @ com.yahoo.antlr ---
 ( TOK_DESTINATION( TOK_TAB( TOK_TABNAME( TABLE_X))( TOK_PARTSPEC( TOK_PARTVAL( DIM_1)( 'A'))( TOK_PARTVAL( DIM_2)( 'B')))))
@@ -24,10 +20,6 @@ ANTLR Parser Generator  Version 3.3 Nov 30, 2010 12:46:29
 com/yahoo/antlr/Insert.g
 [INFO] 
 ...
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
-...
 [INFO] --- exec-maven-plugin:1.2.1:java (default) @ com.yahoo.antlr ---
 ( TOK_DESTINATION( TOK_TAB))
 ..
@@ -39,10 +31,6 @@ mvn clean test -Dantlr.version=3.4
 ANTLR Parser Generator  Version 3.4
 com/yahoo/antlr/Insert.g
 [INFO] 
-..
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
 ..
 [INFO] --- exec-maven-plugin:1.2.1:java (default) @ com.yahoo.antlr ---
 ( TOK_DESTINATION( TOK_TAB))
