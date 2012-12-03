@@ -9,7 +9,7 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <antlr.version>3.2</antlr.version>
+        <antlr.version>3.4</antlr.version>
     </properties>
 
     <build>

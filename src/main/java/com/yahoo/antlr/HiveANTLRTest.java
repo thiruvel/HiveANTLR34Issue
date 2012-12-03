@@ -7,6 +7,7 @@ import java.lang.System;
 
 public class HiveANTLRTest {
     public static void main(String[] args) {
+//        String query = "insert overwrite local directory '/tmp' select cols from table_y";
         String query = "insert overwrite table table_x partition (dim_1='a', dim_2='b') select cols from table_y";
         String query_2 = "insert overwrite table x select cols from y";
 
@@ -16,10 +17,10 @@ public class HiveANTLRTest {
 
         CommonTreeAdaptor adaptor = new CommonTreeAdaptor();
         parser.setTreeAdaptor(adaptor);
-        InsertParser.body_return r;
+        InsertParser.insertClause_return r;
 
         try {
-            r = parser.body();
+            r = parser.insertClause();
         } catch (RecognitionException e) {
             throw new RuntimeException("parse exception");
         }
