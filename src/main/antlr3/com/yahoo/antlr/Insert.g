@@ -78,7 +78,7 @@ destination
    : KW_LOCAL KW_DIRECTORY StringLiteral
         -> ^(TOK_LOCAL_DIR StringLiteral)
    | KW_DIRECTORY StringLiteral
-	   	-> ^(TOK_DIR StringLiteral)
+        -> ^(TOK_DIR StringLiteral)
    | KW_TABLE tableOrPartition
         -> ^(tableOrPartition)
    ;
@@ -96,14 +96,14 @@ selectList
 @init { msgs.push("select list"); }
 @after { msgs.pop(); }
     : selectItem ( COMMA  selectItem )* 
-		-> selectItem+
+        -> selectItem+
     ;
 
 selectItem
 @init { msgs.push("selection target"); }
 @after { msgs.pop(); }
     : ( selectExpression  ((KW_AS? Identifier) | (KW_AS LPAREN Identifier (COMMA Identifier)* RPAREN))?) 
-		-> ^(TOK_SELEXPR selectExpression Identifier*)
+        -> ^(TOK_SELEXPR selectExpression Identifier*)
     ;
 
 
@@ -119,7 +119,7 @@ selectExpressionList
 @after { msgs.pop(); }
     :
     selectExpression (COMMA selectExpression)* 
-		-> ^(TOK_EXPLIST selectExpression+)
+        -> ^(TOK_EXPLIST selectExpression+)
     ;
 
 
@@ -137,7 +137,7 @@ tableOrColumn
 @init { msgs.push("table or column identifier"); }
 @after { msgs.pop(); }
     : Identifier
-		-> ^(TOK_TABLE_OR_COL Identifier)
+        -> ^(TOK_TABLE_OR_COL Identifier)
     ;
 
 //----------------------- Rules for parsing fromClause ------------------------------
@@ -146,7 +146,7 @@ fromClause
 @init { msgs.push("from clause"); }
 @after { msgs.pop(); }
     : KW_FROM joinSource
-		-> ^(TOK_FROM joinSource)
+        -> ^(TOK_FROM joinSource)
     ;
 
 joinSource
@@ -159,7 +159,7 @@ tableAlias
 @init {msgs.push("table alias"); }
 @after {msgs.pop(); }
     : Identifier
-		-> ^(TOK_TABALIAS Identifier)
+        -> ^(TOK_TABALIAS Identifier)
     ;
 
 fromSource
@@ -172,14 +172,14 @@ tableSource
 @init { msgs.push("table source"); }
 @after { msgs.pop(); }
     : tabname=tableName (alias=Identifier)?
-    	-> ^(TOK_TABREF $tabname  $alias?)
+        -> ^(TOK_TABREF $tabname  $alias?)
     ;
 
 tableName
 @init { msgs.push("table name"); }
 @after { msgs.pop(); }
     : (db=Identifier DOT)? tab=Identifier
-    	-> ^(TOK_TABNAME $db? $tab)
+        -> ^(TOK_TABNAME $db? $tab)
     ;
 
 constant
@@ -196,29 +196,29 @@ constant
 
 stringLiteralSequence
     : StringLiteral StringLiteral+ 
-		-> ^(TOK_STRINGLITERALSEQUENCE StringLiteral StringLiteral+)
+        -> ^(TOK_STRINGLITERALSEQUENCE StringLiteral StringLiteral+)
     ;
 
 charSetStringLiteral
 @init { msgs.push("character string literal"); }
 @after { msgs.pop(); }
     : csName=CharSetName csLiteral=CharSetLiteral 
-		-> ^(TOK_CHARSETLITERAL $csName $csLiteral)
+        -> ^(TOK_CHARSETLITERAL $csName $csLiteral)
     ;
 
 tableOrPartition
    : tableName partitionSpec? 
-   	    -> ^(TOK_TAB tableName partitionSpec?)
+        -> ^(TOK_TAB tableName partitionSpec?)
    ;
 
 partitionSpec
     : KW_PARTITION LPAREN partitionVal (COMMA  partitionVal )* RPAREN 
-	 	-> ^(TOK_PARTSPEC partitionVal +)
+        -> ^(TOK_PARTSPEC partitionVal +)
     ;
 
 partitionVal
     : Identifier (EQUAL constant)? 
-		-> ^(TOK_PARTVAL Identifier constant?)
+        -> ^(TOK_PARTVAL Identifier constant?)
     ;
 
 KW_ALL : 'ALL';
